@@ -50,11 +50,13 @@ int inputValue(int argc, char **argv){
           x = 0.9;
           n = 100;
           eps = 0.001;
+          initPrint();
           return 0;
         case 1:
           x = 0.9;
           n = 20;
           eps = 0.001;
+          initPrint();
           return 0;
       }
     } else if (argc == 4) {
