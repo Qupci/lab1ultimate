@@ -6,7 +6,6 @@
 double x, eps, new_x, sum, answer;
 int n, i=0;
 
-int end(double sum, int retval);
 int inputValue(int argc, char **argv);
 
 void printVariant10(){
@@ -27,22 +26,22 @@ int main(int argc, char **argv) {
         while (1) {
           printVariant10();
           if (new_x <= eps)
-            return end(sum, 0);
+            return end(0);
           i++;
           if (n < i)
-            return end(sum, 1);
+            return end(0);
         }
       case 1: // use eps as limiter
         do {
           printVariant10();
           i++;
         } while (new_x >= eps);
-        return end(sum, 0);
+        return end(0);
       case 2: // use n as limiter
         for (i;i<=n;i++) {
           printVariant10();
         }
-        return end(sum, 1);
+        return end(0);
       default:
         return cycleMethod;
     }
@@ -105,7 +104,7 @@ int inputValue(int argc, char **argv){
   return -1;
 } 
 
-int end(double sum, int retval) {
-  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,answer,retval);
+int end(retval) {
+  printf("\nfinished.\nsum: %lf answer: %lf",sum,answer);
   return retval;
 }
