@@ -3,7 +3,7 @@
 #include<stdlib.h> // for atoi,atof
 #include<string.h> // for strncmp
 
-double x, eps, new_x, sum; answer;
+double x, eps, new_x, sum, answer;
 int n, i=0;
 
 int end(double sum, int retval);
@@ -17,27 +17,33 @@ void printVariant10(){
 }
 
 int main(int argc, char **argv) {
-  switch (inputValue(argc,argv)){
-    case 0: // use both n and eps as limiter
-      while (1) {
-        printVariant10();
-        if (new_x <= eps)
-          return end(sum, 0);
-        i++;
-        if (n < i)
-          return end(sum, 1);
-      }
-    case 3: // use eps as limiter
-      do {
-        printVariant10();
-        i++;
-      } while (new_x >= eps);
-      return end(sum, 0);
-    case 4: // use n as limiter
-      for (i;i<=n;i++) {
-        printVariant10();
-      }
-      return end(sum, 1);
+  int cycleMethod = inputValue(argc,argv);
+  if(cycleMethod >= 0) {
+    switch (cycleMethod){
+      case 0: // use both n and eps as limiter
+        while (1) {
+          printVariant10();
+          if (new_x <= eps)
+            return end(sum, 0);
+          i++;
+          if (n < i)
+            return end(sum, 1);
+        }
+      case 1: // use eps as limiter
+        do {
+          printVariant10();
+          i++;
+        } while (new_x >= eps);
+        return end(sum, 0);
+      case 2: // use n as limiter
+        for (i;i<=n;i++) {
+          printVariant10();
+        }
+        return end(sum, 1);
+    }
+  } else {
+    printf("\nError: 4XXMs3FO50M");
+    return -1;
   }
 }
 
@@ -72,17 +78,17 @@ int inputValue(int argc, char **argv){
         fail = 1;
         }
       if (fail) {
-        return 1;
+        return -2;
       } else {
         if (n == 0 && eps == 0) {
           printf("\nAt least one limiter (n or eps) should be not zero.");
-          return 1;
+          return -2;
         } else if (n == 0) {
           initPrint();
-          return 3;
+          return 1;
         } else if (eps == 0) {
           initPrint();
-          return 4;
+          return 2;
         }
         initPrint();
         return 0;
@@ -91,7 +97,7 @@ int inputValue(int argc, char **argv){
   } 
   printf("ПИ 382007-в2 Ильюшенков Сергей Денисович\nЛабараторная 1, вариант 10\n\nusage: lab1v10 x n eps");
   printf("\n\n--test number\t\t0 exit by eps; 1 exit by n");
-  return 2;
+  return -1;
 } 
 
 void initPrint(){
@@ -102,6 +108,6 @@ void initPrint(){
 }
 
 int end(double sum, int retval) {
-  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,(double)answer,retval);
+  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,answer,retval);
   return retval;
 }
