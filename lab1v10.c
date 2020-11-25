@@ -21,10 +21,10 @@ int main(int argc, char **argv) {
     case 0: // use both n and eps limiters
       while (1) {
         printVariant10();
-        i++;
         if (new_x <= eps)
           return end(sum, 0);
-        if (n <= i)
+        i++;
+        if (n < i)
           return end(sum, 1);
       }
     case 3: // use eps as limiter
