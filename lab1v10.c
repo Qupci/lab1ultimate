@@ -3,12 +3,45 @@
 #include<stdlib.h> // for atoi,atof
 #include<string.h> // for strncmp
 
-double x, eps;
-int n;
+double x, eps, new_x, sum;
+int n, i=0;
 
-int end(double sum, int retval) {
-  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,1 / (1-x),retval);
-  return retval;
+int end(double sum, int retval);
+int inputValue(int argc, char **argv);
+void initPrint();
+
+void printVariant10(){
+  new_x = pow(x,i);
+  sum += new_x;
+  printf("\n%lf     %lf     %d          ", sum, new_x, i+1);
+}
+
+int main(int argc, char **argv) {
+  switch (inputValue(argc,argv)){
+    case 0: // use both n and eps limiters
+      while (1) {
+        printVariant10();
+        i++;
+        if (new_x <= eps)
+          return end(sum, 0);
+        if (n <= i)
+          return end(sum, 1);
+      }
+      break;
+    case 3: // use eps as limiter
+      do {
+        printVariant10();
+        i++;
+      } while (new_x >= eps);
+      return end(sum, 0);
+      break;
+    case 4: // use n as limiter
+      for (i;i<=n;i++) {
+        printVariant10();
+      }
+      return end(sum, 1);
+      break;
+  }
 }
 
 int inputValue(int argc, char **argv){
@@ -42,6 +75,17 @@ int inputValue(int argc, char **argv){
       if (fail) {
         return 1;
       } else {
+        if (n == 0 && eps == 0) {
+          printf("\nAt least one limiter (n or eps) should be not zero.");
+          return 1;
+        } else if (n == 0) {
+          initPrint();
+          return 3;
+        } else if (eps == 0) {
+          initPrint();
+          return 4;
+        }
+        initPrint();
         return 0;
       }
     } 
@@ -51,21 +95,13 @@ int inputValue(int argc, char **argv){
   return 2;
 } 
 
-int main(int argc, char **argv) {
-  double new_x, sum;
-  int i = 0;
-  if (inputValue(argc,argv) == 0) {
-    printf("\n\n------------------------------------------------\nx: %lf\nn: %d\neps: %lf\ni: %d\n------------------------------------------------\n",x,n,eps,i);
-    printf("\nsum:         x^i:         step:         ");
-    while (1) {
-      new_x = pow(x,i);
-      sum += new_x;
-      printf("\n%lf     %lf     %d          ", sum, new_x, i+1);
-      i++;
-      if (new_x <= eps)
-        return end(sum, 0);
-      if (n < i)
-        return end(sum, 1);
-    }
-  }
+void initPrint(){
+  printf("\n\n------------------------------------------------\nx: %lf\nn: %d\neps: %lf\ni: %d\n------------------------------------------------\n",x,n,eps,i);
+  printf("\nsum:         x^i:         step:         ");
+  n--; // for halt variant printing at user defined n
+}
+
+int end(double sum, int retval) {
+  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,1 / (1-x),retval);
+  return retval;
 }
