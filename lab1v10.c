@@ -102,6 +102,6 @@ void initPrint(){
 }
 
 int end(double sum, int retval) {
-  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,answer,retval);
+  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,(double)answer,retval);
   return retval;
 }
