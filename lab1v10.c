@@ -3,7 +3,7 @@
 #include<stdlib.h> // for atoi,atof
 #include<string.h> // for strncmp
 
-double x, eps, new_x, sum;
+double x, eps, new_x, sum; answer;
 int n, i=0;
 
 int end(double sum, int retval);
@@ -11,14 +11,14 @@ int inputValue(int argc, char **argv);
 void initPrint();
 
 void printVariant10(){
-  new_x = pow(x,i);
+  new_x = (i+1) * (pow(x,i));
   sum += new_x;
-  printf("\n%lf     %lf     %d          ", sum, new_x, i+1);
+  printf("\n%lf\t%lf\t%d\t", sum, new_x, i+1);
 }
 
 int main(int argc, char **argv) {
   switch (inputValue(argc,argv)){
-    case 0: // use both n and eps limiters
+    case 0: // use both n and eps as limiter
       while (1) {
         printVariant10();
         if (new_x <= eps)
@@ -47,13 +47,13 @@ int inputValue(int argc, char **argv){
     if (strncmp(argv[1],"--test",6) == 0 && argc > 2 ) {
       switch (atoi(argv[2])) {
         case 0:
-          x = 0.9;
+          x = 0.5;
           n = 100;
           eps = 0.001;
           initPrint();
           return 0;
         case 1:
-          x = 0.9;
+          x = 0.5;
           n = 20;
           eps = 0.001;
           initPrint();
@@ -96,11 +96,12 @@ int inputValue(int argc, char **argv){
 
 void initPrint(){
   printf("\n\n------------------------------------------------\nx: %lf\nn: %d\neps: %lf\ni: %d\n------------------------------------------------\n",x,n,eps,i);
-  printf("\nsum:         x^i:         step:         ");
-  n--; // for halt variant printing at user defined n
+  printf("\nsum:\t\tnew_x:\t\tstep:\t\t");
+  n--; // last step == n
+  answer = 1 / (pow((1-x),2)); // answer case for Variant 10
 }
 
 int end(double sum, int retval) {
-  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,1 / (1-x),retval);
+  printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,answer,retval);
   return retval;
 }
