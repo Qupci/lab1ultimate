@@ -27,20 +27,17 @@ int main(int argc, char **argv) {
         if (n <= i)
           return end(sum, 1);
       }
-      break;
     case 3: // use eps as limiter
       do {
         printVariant10();
         i++;
       } while (new_x >= eps);
       return end(sum, 0);
-      break;
     case 4: // use n as limiter
       for (i;i<=n;i++) {
         printVariant10();
       }
       return end(sum, 1);
-      break;
   }
 }
 
