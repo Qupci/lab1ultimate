@@ -8,7 +8,6 @@ int n, i=0;
 
 int end(double sum, int retval);
 int inputValue(int argc, char **argv);
-void initPrint();
 
 void printVariant10(){
   new_x = (i+1) * (pow(x,i));
@@ -18,7 +17,11 @@ void printVariant10(){
 
 int main(int argc, char **argv) {
   int cycleMethod = inputValue(argc,argv);
-  if(cycleMethod >= 0) {
+  if (cycleMethod >= 0){
+    printf("\n\n------------------------------------------------\nx: %lf\nn: %d\neps: %lf\ni: %d\n------------------------------------------------\n",x,n,eps,i);
+    printf("\nsum:\t\tnew_x:\t\tstep:\t\t");
+    n--; // last step == n
+    answer = 1 / (pow((1-x),2)); // answer case for Variant 10
     switch (cycleMethod){
       case 0: // use both n and eps as limiter
         while (1) {
@@ -40,10 +43,17 @@ int main(int argc, char **argv) {
           printVariant10();
         }
         return end(sum, 1);
+      default:
+        return cycleMethod;
     }
   } else {
-    printf("\nError: 4XXMs3FO50M");
-    return -1;
+    switch (cycleMethod){
+      case -2:
+        printf("\nError: 4XXMs3FO50M");
+        return -2;
+      default:
+        return cycleMethod;
+    }
   }
 }
 
@@ -56,13 +66,11 @@ int inputValue(int argc, char **argv){
           x = 0.5;
           n = 100;
           eps = 0.001;
-          initPrint();
           return 0;
         case 1:
           x = 0.5;
           n = 20;
           eps = 0.001;
-          initPrint();
           return 0;
       }
     } else if (argc == 4) {
@@ -84,13 +92,10 @@ int inputValue(int argc, char **argv){
           printf("\nAt least one limiter (n or eps) should be not zero.");
           return -2;
         } else if (n == 0) {
-          initPrint();
           return 1;
         } else if (eps == 0) {
-          initPrint();
           return 2;
         }
-        initPrint();
         return 0;
       }
     } 
@@ -99,13 +104,6 @@ int inputValue(int argc, char **argv){
   printf("\n\n--test number\t\t0 exit by eps; 1 exit by n");
   return -1;
 } 
-
-void initPrint(){
-  printf("\n\n------------------------------------------------\nx: %lf\nn: %d\neps: %lf\ni: %d\n------------------------------------------------\n",x,n,eps,i);
-  printf("\nsum:\t\tnew_x:\t\tstep:\t\t");
-  n--; // last step == n
-  answer = 1 / (pow((1-x),2)); // answer case for Variant 10
-}
 
 int end(double sum, int retval) {
   printf("\nfinished.\nsum: %lf answer: %lf\nexit code: %d",sum,answer,retval);
