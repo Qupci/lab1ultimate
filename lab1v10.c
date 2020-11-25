@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
   int cycleMethod = inputValue(argc,argv);
   if (cycleMethod >= 0){
     printf("\n\n------------------------------------------------\nx: %lf",x);
-    if (cycleMethod == 1) {
+    if (cycleMethod) {
       printf("\nn: %d",n);
     } else {
       printf("\neps: %lf",eps);
@@ -71,20 +71,20 @@ int inputValue(int argc, char **argv){
       x = fabs(atof(argv[1]));
       method = atoi(argv[2]);
       if (method){
-        eps = fabs(atof(argv[3]));
-        if (eps > 1) {
-          printf("\neps (%lf) cannot be more than 1",eps);
-          return -2;
-        } else {
-          return 0; 
-        }
-      } else {
         n = fabs(atoi(argv[3]));
         if (x > 1) {
           printf("\nx (%lf) cannot be more than 1",x);
           return -2;
         } else {
           return 1;
+        }
+      } else {
+        eps = fabs(atof(argv[3]));
+        if (eps > 1) {
+          printf("\neps (%lf) cannot be more than 1",eps);
+          return -2;
+        } else {
+          return 0; 
         }
       }
     } 
