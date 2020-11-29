@@ -70,14 +70,13 @@ int inputValue(int argc, char **argv){
     } else if (argc == 4) {
       x = fabs(atof(argv[1]));
       method = atoi(argv[2]);
+      if (x > 1) {
+        printf("\nx (%lf) cannot be more than 1",x);
+        return -2;
+      }
       if (method){
         n = fabs(atoi(argv[3]));
-        if (x > 1) {
-          printf("\nx (%lf) cannot be more than 1",x);
-          return -2;
-        } else {
-          return 1;
-        }
+        return 1;
       } else {
         eps = fabs(atof(argv[3]));
         if (eps > 1) {
@@ -89,7 +88,7 @@ int inputValue(int argc, char **argv){
       }
     } 
   } 
-  printf("ПИ 382007-в2 Ильюшенков Сергей Денисович\nЛабараторная 1, вариант 10");
+  printf("ПИ 382007-в2 Ильюшенков Сергей Денисович\nЛабараторная 1, вариант 10 (1 / (1-x)^2)");
   printf("\n\nusage: lab1v10 x method [eps|n]");
   printf("\n\nx\t\tfloat");
   printf("\nmethod\t\tint\t0 exit by eps; 1 exit by n");
