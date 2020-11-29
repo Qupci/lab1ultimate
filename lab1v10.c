@@ -11,7 +11,7 @@ int inputValue(int argc, char **argv);
 void printVariant10(){
   new_x = (i+1) * (pow(x,i));
   sum += new_x;
-  printf("\n%lf\t%lf\t%d\t", sum, new_x, i+1);
+  printf("\n%d\t%.13f\t%.13f\t",i+1, sum, new_x);
 }
 
 int main(int argc, char **argv) {
@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
       printf("\neps: %lf",eps);
     }
     printf("\ni: %d\n------------------------------------------------\n",x,n,eps,i);
-    printf("\nsum:\t\tnew_x:\t\tstep:\t\t");
+    printf("\nstep:\tsum:\t\tnew_x:\t\t");
     n--; // last step == n
     answer = 1 / (pow((1-x),2)); // answer case for Variant 10
     switch (cycleMethod){
@@ -99,6 +99,6 @@ int inputValue(int argc, char **argv){
 } 
 
 int end(retval) {
-  printf("\nfinished.\nsum: %lf answer: %lf",sum,answer);
+  printf("\nfinished.\nsum: %.17g\nanswer: %.17g",sum,answer);
   return retval;
 }
