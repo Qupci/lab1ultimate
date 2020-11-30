@@ -16,36 +16,16 @@ int inputValue(int argc, char **argv);
 void initVariant();
 void printVariant();
 
-void v10(){
-  new_x = (i+1) * pow(x,i);
-}
-void v9(){
-  new_x = 2*(pow(x,2*i-1)/(2*i-1));
-}
-void v8(){
-  new_x = pow(x,2*i)/fact(2*i);
-}
-void v7(){
-  new_x = pow(x,2*i-1)/fact(2*i-1);
-}
-void v6(){
-  new_x = pow(-1,i+2)*pow(x,i);
-}
-void v5(){
-  new_x = pow(x,i);
-}
-void v4(){
-  new_x = pow(-1,i+1)*(pow(x,2*i-1)/(2*i-1));
-}
-void v3(){
-  new_x = (pow(-1,i+1)*pow(x,i))/i;
-}
-void v2(){
-  new_x = pow(-1,i+2)*(pow(x,2*i)/fact(2*i));
-}
-void v1(){
-  new_x = pow((-1),i+1) * (pow(x,2*i-1) / fact(2*i-1));
-}
+void v10(){new_x = (i+1) * pow(x,i);}
+void v9(){new_x = 2*(pow(x,2*i-1)/(2*i-1));}
+void v8(){new_x = pow(x,2*i)/fact(2*i);}
+void v7(){new_x = pow(x,2*i-1)/fact(2*i-1);}
+void v6(){new_x = pow(-1,i+2)*pow(x,i);}
+void v5(){new_x = pow(x,i);}
+void v4(){new_x = pow(-1,i+1)*(pow(x,2*i-1)/(2*i-1));}
+void v3(){new_x = (pow(-1,i+1)*pow(x,i))/i;}
+void v2(){new_x = pow(-1,i+2)*(pow(x,2*i)/fact(2*i));}
+void v1(){new_x = pow((-1),i+1) * (pow(x,2*i-1) / fact(2*i-1));}
 void initVariant(){
   switch (variant){
     case 10:
@@ -117,7 +97,7 @@ int testCondition(){
       x = fabs(x);
       if (x>1){
         fail = 1;
-        printf("\nx (%.17g) cannot be >= 1",x);
+        printf("\nx (%.17g) cannot be > 1",x);
       }
       break;
     case 3:
