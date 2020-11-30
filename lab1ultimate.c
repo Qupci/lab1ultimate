@@ -149,7 +149,6 @@ int main(int argc, char **argv) {
     }
     printf("\ni: %d\n------------------------------------------------\n",i);
     printf("\nstep:\tsum:\t\tnew_x:\t\t");
-    // n--; // last step == n
     initVariant();
     switch (cycleMethod){
       case 0: // use eps as limiter
@@ -214,7 +213,7 @@ int inputValue(int argc, char **argv){
     } 
   } 
   printf("ПИ 382007-в2 Ильюшенков Сергей Денисович\nЛабараторная 1 ULTIMATE");
-  printf("\n\nusage: lab1 variant x method [eps|n]\n");
+  printf("\n\nusage: lab1ultimate variant x method [eps|n]\n");
   printf("\nvariant\t\tint\t1 to 10");
   printf("\nx\t\tfloat");
   printf("\nmethod\t\tint\t0 exit by eps; 1 exit by n");
@@ -233,5 +232,3 @@ int end(retval) {
   printf("\nfinished.\nsum: %.17g\nanswer: %.17g",sum,answer);
   return retval;
 }
-
-// success: 10,8,7,6,5,4
