@@ -15,9 +15,6 @@ void (*calc)(); // https://www.learn-c.org/en/Function_Pointers
 int inputValue(int argc, char **argv);
 void initVariant();
 void printVariant();
-void endcalc9(){
-  sum *= 2;
-}
 
 void v10(){
   new_x = (i+1) * pow(x,i);
@@ -155,7 +152,7 @@ int main(int argc, char **argv) {
         do {
           printVariant();
           step++;
-        } while (new_x >= eps);
+        } while (fabs(new_x) >= eps);
         return end(0);
       case 1: // use n as limiter
         for (step;step<=n;step++) {
@@ -215,9 +212,9 @@ int inputValue(int argc, char **argv){
   printf("ПИ 382007-в2 Ильюшенков Сергей Денисович\nЛабараторная 1 ULTIMATE");
   printf("\n\nusage: lab1ultimate variant x method [eps|n]\n");
   printf("\nvariant\t\tint\t1 to 10");
-  printf("\nx\t\tfloat");
+  printf("\nx\t\tdouble");
   printf("\nmethod\t\tint\t0 exit by eps; 1 exit by n");
-  printf("\neps\t\tfloat");
+  printf("\neps\t\tdouble");
   printf("\nn\t\tint");
   printf("\n\n--test number\t\t0 exit by eps; 1 exit by n");
   return -1;
@@ -226,7 +223,7 @@ void printVariant(){
   (calc)();
   sum += new_x;
   i++;
-  printf("\n%d\t%.13f\t%.13f\t",step, sum, new_x);
+  printf("\n%d\t%.12f\t%.12f\t",step, sum, new_x);
 }
 int end(retval) {
   printf("\nfinished.\nsum: %.17g\nanswer: %.17g",sum,answer);
