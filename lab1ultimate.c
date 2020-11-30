@@ -44,7 +44,7 @@ void v2(){
   new_x = pow(-1,i+2)*(pow(x,2*i)/fact(2*i));
 }
 void v1(){
-  new_x = pow((-1),i+1) * (pow(x,2*i-1) / fact(pow(x,2*i-1)));
+  new_x = pow((-1),i+1) * (pow(x,2*i-1) / fact(2*i-1));
 }
 void initVariant(){
   switch (variant){
