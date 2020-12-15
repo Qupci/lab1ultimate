@@ -2,10 +2,18 @@
 #include<math.h> // for pow,log,cos,sin,sinh,cosh
 #include<stdlib.h> // for atoi,atof
 #include<string.h> // for strncmp
+#define M_PI		3.14159265358979323846
 
-double fact(double a) // https://stackoverflow.com/a/2417853
+// double fact(double a) // https://stackoverflow.com/a/2417853
+// {
+//   return tgamma(a+1.);
+// }
+
+double fact(double a)
 {
-  return tgamma(a+1.);
+  if (a==0)
+    return 1;
+  return a*fact(a-1);
 }
 
 double x, eps, new_x, sum, answer;
@@ -15,6 +23,7 @@ void (*calc)(); // https://www.learn-c.org/en/Function_Pointers
 int inputValue(int argc, char **argv);
 void initVariant();
 void printVariant();
+int end(int retval);
 
 void v10(){new_x = (i+1) * pow(x,i);}
 void v9(){new_x = 2*(pow(x,2*i-1)/(2*i-1));}
@@ -94,7 +103,7 @@ int testCondition(){
       }
       break;
     case 4:
-      x = fabs(x);
+      x = fabs((x * M_PI) / 180);
       if (x>1){
         fail = 1;
         printf("\nx (%.17g) cannot be > 1",x);
@@ -108,6 +117,7 @@ int testCondition(){
       break;
     case 1:
     case 2:
+      x = (x * M_PI) / 180;
     case 8:
     case 7:
       x = fabs(x);
@@ -205,7 +215,7 @@ void printVariant(){
   i++;
   printf("\n%d\t%.12f\t%.12f\t",step, sum, new_x);
 }
-int end(retval) {
+int end(int retval) {
   printf("\nfinished.\nsum: %.17g\nanswer: %.17g",sum,answer);
   return retval;
 }
